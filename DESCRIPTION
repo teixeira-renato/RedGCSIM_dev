@@ -1,0 +1,18 @@
+Package: RedGCSIM
+Title: Algoritmo de Redistribuição de Causas Garbage para Dados do SIM
+Version: 0.0.0.9000
+Authors@R:
+  person("Renato", "Teixeira", email = "renato115@yahoo.com", role = c("aut", "cre"),
+         comment = c(ORCID = "0000-0002-1259-6812"))
+Description: Implementa um algoritmo para redistribuição de causas garbage nos dados do Sistema de Informações sobre Mortalidade (SIM) do Brasil, desenvolvido pelo Grupo de Pesquisas em Epidemiologia e Avaliação em Saúde (GPEAS) da UFMG.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+URL: https://github.com/teixeira-renato/RedGCSIM
+BugReports: https://github.com/teixeira-renato/RedGCSIM/issues
+Depends: R (>= 3.5.0)
+LazyData: true
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
