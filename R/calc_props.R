@@ -71,7 +71,7 @@ calc_props <- function(base, causa, prefix, obito_in, obito_out,
     ungroup()
   
   # JUNTAR PROPORÇÕES
-  base_alt <- base %>%
+  base_alt <- base_filt %>%
     left_join(muni,     by = c("cdmun","micro","meso","GBD","idade","ano","sexo","uf")) %>%
     left_join(micro_df, by = c("micro","meso","GBD","idade","ano","sexo","uf")) %>%
     left_join(meso_df,  by = c("meso","GBD","idade","ano","sexo","uf")) %>%
