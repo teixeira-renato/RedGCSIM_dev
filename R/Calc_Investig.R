@@ -7,7 +7,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   muni <- base_filt%>%
     filter(GBD %in% causa) %>%
     group_by(cdmun, micro, meso, GBD, idade, ano, sexo, uf) %>%
-    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups = "drop") %>%
+    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups="drop_last") %>%
     group_by(cdmun, micro, meso, idade, ano, sexo, uf) %>%
     mutate(
       pr.mu = ob / sum(ob, na.rm = TRUE),
@@ -19,7 +19,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   muni_II <- base_filt%>%
     filter(GBD %in% causa_II) %>%
     group_by(cdmun, micro, meso, GBD, idade, ano, sexo, uf) %>%
-    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups = "drop") %>%
+    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups="drop_last") %>%
     group_by(cdmun, micro, meso, idade, ano, sexo, uf) %>%
     mutate(
       pr.mu = ob / sum(ob, na.rm = TRUE),
@@ -34,7 +34,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   micro_df <- base_filt %>%
     filter(GBD %in% causa) %>%
     group_by(micro, meso, GBD, idade, ano, sexo, uf) %>%
-    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups = "drop") %>%
+    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups="drop_last") %>%
     group_by(micro, meso, idade, ano, sexo, uf) %>%
     mutate(
       pr.mi = ob / sum(ob, na.rm = TRUE),
@@ -46,7 +46,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   micro_df_II <- base_filt %>%
     filter(GBD %in% causa_II) %>%
     group_by(micro, meso, GBD, idade, ano, sexo, uf) %>%
-    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups = "drop") %>%
+    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups="drop_last") %>%
     group_by(micro, meso, idade, ano, sexo, uf) %>%
     mutate(
       pr.mi = ob / sum(ob, na.rm = TRUE),
@@ -61,7 +61,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   meso_df <- base_filt %>%
     filter(GBD %in% causa) %>%
     group_by(meso, GBD, idade, ano, sexo, uf) %>%
-    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups = "drop") %>%
+    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups="drop_last") %>%
     group_by(meso, idade, ano, sexo, uf) %>%
     mutate(
       pr.me = ob / sum(ob, na.rm = TRUE),
@@ -73,7 +73,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   meso_df_II <- base_filt %>%
     filter(GBD %in% causa_II) %>%
     group_by(meso, GBD, idade, ano, sexo, uf) %>%
-    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups = "drop") %>%
+    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups="drop_last") %>%
     group_by(meso, idade, ano, sexo, uf) %>%
     mutate(
       pr.me = ob / sum(ob, na.rm = TRUE),
@@ -88,7 +88,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   uf_df <- base_filt %>%
     filter(GBD %in% causa) %>%
     group_by(GBD, idade, ano, sexo, uf) %>%
-    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups = "drop") %>%
+    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups="drop_last") %>%
     group_by(idade, ano, sexo, uf) %>%
     mutate(
       pr.uf = ob / sum(ob, na.rm = TRUE),
@@ -100,7 +100,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   uf_df_II <- base_filt %>%
     filter(GBD %in% causa_II) %>%
     group_by(GBD, idade, ano, sexo, uf) %>%
-    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups = "drop") %>%
+    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups="drop_last") %>%
     group_by(idade, ano, sexo, uf) %>%
     mutate(
       pr.uf = ob / sum(ob, na.rm = TRUE),
@@ -115,7 +115,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   reg_df <- base_filt %>%
     filter(GBD %in% causa) %>%
     group_by(GBD, idade, ano, sexo, reg) %>%
-    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups = "drop") %>%
+    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups="drop_last") %>%
     group_by(idade, ano, sexo, reg) %>%
     mutate(
       pr.rg = ob / sum(ob, na.rm = TRUE),
@@ -127,7 +127,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   reg_df_II <- base_filt %>%
     filter(GBD %in% causa_II) %>%
     group_by(GBD, idade, ano, sexo, reg) %>%
-    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups = "drop") %>%
+    summarise(ob = sum(.data[[obito_in]], na.rm = TRUE), .groups="drop_last") %>%
     group_by(idade, ano, sexo, reg) %>%
     mutate(
       pr.rg = ob / sum(ob, na.rm = TRUE),
@@ -145,7 +145,7 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
     left_join(meso_df, by=c("meso","GBD","idade","ano","sexo","uf")) %>%
     left_join(uf_df, by=c("GBD","idade","ano","sexo","uf")) %>%
     left_join(reg_df, by=c("GBD","idade","ano","sexo","reg")) %>%
-    left_join(data_weight, by=c("GBD"="target")) %>%
+    left_join(data_weight, by=c("GBD"="target"),relationship = "many-to-many") %>%
     mutate(redis = if_else(!is.na(weight), redis*weight, redis))
   
   #================ REDISTRIBUIÇÃO =================#
@@ -158,16 +158,16 @@ calc_investig <- function(base, causa, causa_II, data_weight, fixed_weight, pref
   base_alt <- base_alt %>%
     mutate(
       !!p1 := if_else(GBD %in% fixed_weight, redis, redis*pr.mu),
-      redis.2 = if_else((is.na(.data[[p1]]) | .data[[p1]]==0) & ob.mu==0, redis, NA_real_),
+      redis.2 = if_else(is.na(.data[[p1]]) | (.data[[p1]] == 0 & ob.mu == 0), redis, NA_real_),
       
       !!p2 := if_else(GBD %in% fixed_weight, redis.2, redis.2*pr.mi),
-      redis.3 = if_else(is.na(.data[[p2]]) & ob.mi==0, redis.2, NA_real_),
+      redis.3 = if_else(is.na(.data[[p2]]) & ob.mi == 0, redis.2, NA_real_),
       
       !!p3 := if_else(GBD %in% fixed_weight, redis.3, redis.3*pr.me),
-      redis.4 = if_else(is.na(.data[[p3]]) & ob.me==0, redis.3, NA_real_),
+      redis.4 = if_else(is.na(.data[[p3]]) & ob.me == 0,redis.3,NA_real_),
       
       !!p4 := if_else(GBD %in% fixed_weight, redis.4, redis.4*pr.uf),
-      redis.5 = if_else(is.na(.data[[p4]]) & ob.uf==0, redis.4, NA_real_),
+      redis.5 = if_else(is.na(.data[[p4]]) & ob.uf == 0, redis.4, NA_real_),
       
       !!p5 := if_else(GBD %in% fixed_weight, redis.5, redis.5*pr.rg),
       
