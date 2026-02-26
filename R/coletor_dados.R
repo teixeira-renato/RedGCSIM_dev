@@ -17,7 +17,7 @@
 #' @export
 
 
-Coletor_dados=function(caminho,padrao){
+coletor_dados=function(caminho,padrao){
   if (!require("pacman")) install.packages("pacman") #garantir que o pacman está instalado
   pacman::p_load(dplyr,rio) # pacotes necessários
 
